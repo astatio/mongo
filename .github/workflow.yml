@@ -1,0 +1,28 @@
+name: Compile MongoDB for ARMv8-a
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: arm64
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build MongoDB for ARMv8-a
+      run: |
+        docker buildx create --use
+        docker buildx build --platform linux/arm64 -t mongodb-armv8a .

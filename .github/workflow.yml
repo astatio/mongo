@@ -2,9 +2,9 @@ name: Compile MongoDB for ARMv8-a
 
 on:
   push:
-    branches: [ main ]
+    branches: [ v8.0 ]
   pull_request:
-    branches: [ main ]
+    branches: [ v8.0 ]
 
 jobs:
   build:
